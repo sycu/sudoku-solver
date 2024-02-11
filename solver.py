@@ -1,5 +1,5 @@
 from numpy import array
-from rules import Rule, SudokuColumn, SudokuRow, SudokuSquare, KnightMove, KingMove, OrthogonallyAdjacentNotConsecutive, OrthogonallyAdjacentHaveCommonDivisior
+from rules import Rule, SudokuColumn, SudokuRow, SudokuSquare, KnightMove, KingMove, OrthogonallyAdjacentNotConsecutive, OrthogonallyAdjacentHaveCommonDivisor
 from sudoku import Grid
 from typing import Generator, List
 
@@ -95,7 +95,7 @@ if __name__ == '__main__':
         # KnightMove(),
         # KingMove(),
         # OrthogonallyAdjacentNotConsecutive(),
-        OrthogonallyAdjacentHaveCommonDivisior(),
+        OrthogonallyAdjacentHaveCommonDivisor(),
     ]
     solver = SudokuSolver()
     for solution in solver.solve(rules, test):

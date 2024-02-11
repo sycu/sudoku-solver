@@ -92,7 +92,7 @@ class OrthogonallyAdjacentNotConsecutive(Rule):
         return True
 
 
-class OrthogonallyAdjacentHaveCommonDivisior(Rule):
+class OrthogonallyAdjacentHaveCommonDivisor(Rule):
     def is_valid_move(self, sudoku: Grid, x: int, y: int, value: int) -> bool:
         positions = [
             (x - 1, y),
