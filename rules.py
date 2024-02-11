@@ -76,7 +76,7 @@ class KingMove(Rule):
         return True
 
 
-class OrthagonallyAdjacentNotConsecutive(Rule):
+class OrthogonallyAdjacentNotConsecutive(Rule):
     def is_valid_move(self, sudoku: Grid, x: int, y: int, value: int) -> bool:
         positions = [
             (x - 1, y),
@@ -90,3 +90,36 @@ class OrthagonallyAdjacentNotConsecutive(Rule):
                 return False
 
         return True
+
+
+class OrthogonallyAdjacentHaveCommonDivisior(Rule):
+    def is_valid_move(self, sudoku: Grid, x: int, y: int, value: int) -> bool:
+        positions = [
+            (x - 1, y),
+            (x + 1, y),
+            (x, y - 1),
+            (x, y + 1)
+        ]
+
+        for x0, y0 in positions:
+            if 0 <= x0 < 9 and 0 <= y0 < 9 and 1 <= sudoku[y0][x0] <= 9:
+                if not self.is_ok(sudoku, x0, y0, sudoku[y0][x0], x, y, value):
+                    return False
+
+        return True
+
+    def is_ok(self, sudoku: Grid, x: int, y: int, value: int, nx: int, ny: int, nv: int) -> bool:
+        positions = [
+            (x - 1, y),
+            (x + 1, y),
+            (x, y - 1),
+            (x, y + 1)
+        ]
+
+        for x0, y0 in positions:
+            if 0 <= x0 < 9 and 0 <= y0 < 9:
+                v0 = nv if (x0, y0) == (nx, ny) else sudoku[y0][x0]
+                if (v0 % value == 0) or (value % v0 == 0):
+                    return True
+
+        return False
